@@ -8,10 +8,10 @@ from pycaret.classification import *
 def create_csv(url):
     fp = open("url.csv", "w", encoding="UTF8", newline='')
     writer = csv.writer(fp)
-    header = ["id", "url", "type"]
+    header = ["url", "type"]
     writer.writerow(header)
 
-    row = ["0", url, "benign"]
+    row = [url, "benign"]
     writer.writerow(row)
     fp.close()
 
@@ -66,7 +66,7 @@ def prepare_data():
 
 def apply_model():
     test_set = pd.read_csv("url.csv")
-    loaded_model = load_model("basic_RF_url_classifier")
+    loaded_model = load_model("basic_DT_url_classifier")
     results = predict_model(loaded_model, test_set)
     fp = open("url.csv", "w")
     fp.truncate()
